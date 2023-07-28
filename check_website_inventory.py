@@ -7,6 +7,7 @@ class CheckWebsiteInventory:
     def check_label_on_website(response, label_text):
         soup = BeautifulSoup(response.content, 'html.parser')
         label_element = soup.find(text=label_text)
+        # print(soup.prettify())
 
         if label_element:
             print(f"The label '{label_text}' was found")
@@ -14,3 +15,15 @@ class CheckWebsiteInventory:
         else:
             print(f"The label '{label_text}' was not found")
             return False
+
+    @classmethod
+    def check_product_availability_on_website(cls, response):
+        soup = BeautifulSoup(response.content, 'html.parser')
+        div_elements = soup.findAll("div", class_="product-details")
+        print(f'product-details ', div_elements)
+
+        # Search product detail div tags for
+
+        product_availability = "Sold Out"
+
+        return product_availability
