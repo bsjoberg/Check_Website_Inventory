@@ -19,15 +19,12 @@ class CheckWebsiteInventory:
     @classmethod
     def check_product_availability_on_website(cls, response, product_name):
         soup = BeautifulSoup(response.content, 'html.parser')
-        div_elements = soup.find("div", class_="product-details")
-        print(f'product-details ', div_elements)
-
-        # string_elements = soup.find_all(string=product_name)
-        # print(f'String find of product-details ', string_elements)
+        div_elements = soup.find_all("div", class_="product-details")
 
         # Search product details div tag for the product name
-        print(f'next div ', div_elements.find_next("div", class_="product-details"))
-
-        product_availability = "Sold Out"
+        for div_element in div_elements:
+            if div_element.find("a", string=product_name):
+                product_availability = div_element.find("div", class_="product-availability").text
+                break
 
         return product_availability
