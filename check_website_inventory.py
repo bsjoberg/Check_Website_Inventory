@@ -17,12 +17,15 @@ class CheckWebsiteInventory:
             return False
 
     @classmethod
-    def check_product_availability_on_website(cls, response):
+    def check_product_availability_on_website(cls, response, product_name):
         soup = BeautifulSoup(response.content, 'html.parser')
         div_elements = soup.findAll("div", class_="product-details")
         print(f'product-details ', div_elements)
 
-        # Search product detail div tags for
+        # string_elements = soup.find_all(string=product_name)
+        # print(f'String find of product-details ', string_elements)
+
+        # Search product details div tag for the product name
 
         product_availability = "Sold Out"
 

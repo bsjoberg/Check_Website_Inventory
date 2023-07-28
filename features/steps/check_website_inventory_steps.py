@@ -15,9 +15,9 @@ def step_impl(self, url_request):
     self.response.raise_for_status()
 
 
-@when(u'I check the availability of the "{message}" item')
-def step_impl(self, message):
-    self.result = CheckWebsiteInventory.check_product_availability_on_website(self.response)
+@when(u'I check the availability of the "{product_name}" item')
+def step_impl(self, product_name):
+    self.result = CheckWebsiteInventory.check_product_availability_on_website(self.response, product_name)
 
 
 @then(u'I see the "{message}" on the page')
