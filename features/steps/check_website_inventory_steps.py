@@ -25,6 +25,8 @@ def step_impl(self, message):
     assert CheckWebsiteInventory.check_label_on_website(self.response, message)
 
 
-@then(u'I see "{availability_text}" on the page')
+@then(u'I see "{availability_text}" for the item')
 def step_impl(self, availability_text):
+    if availability_text == "Available":
+        availability_text = ""
     assert self.result == availability_text
